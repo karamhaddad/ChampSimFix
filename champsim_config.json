@@ -7,11 +7,11 @@
 
     "ooo_cpu": [
         {
-            "frequency": 4000,
+            "frequency": 5000,
             "ifetch_buffer_size":64,
             "decode_buffer_size":32,
             "dispatch_buffer_size":32,
-            "rob_size": 352,
+            "rob_size": 192,
             "lq_size": 128,
             "sq_size": 72,
             "fetch_width": 6,
@@ -56,35 +56,35 @@
 
     "L1D": {
         "sets": 64,
-        "ways": 12,
+        "ways": 8,
         "rq_size": 64,
         "wq_size": 64,
         "pq_size": 8,
-        "mshr_size": 16,
-        "latency": 5,
+        "mshr_size": 8,
+        "latency": 4,
         "max_tag_check": 2,
         "max_fill": 2,
         "prefetch_as_load": false,
         "virtual_prefetch": false,
         "prefetch_activate": "LOAD,PREFETCH",
-        "prefetcher": "no"
+        "prefetcher": "T_SKID"
     },
 
     "L2C": {
-        "sets": 1024,
+        "sets": 512,
         "ways": 8,
         "rq_size": 32,
         "wq_size": 32,
         "pq_size": 16,
-        "mshr_size": 32,
-        "latency": 10,
+        "mshr_size": 16,
+        "latency": 8,
         "max_tag_check": 1,
         "max_fill": 1,
         "prefetch_as_load": false,
-        "virtual_prefetch": false,
+        "virtual_prefetch": true,
         "prefetch_activate": "LOAD,PREFETCH",
         "prefetcher": "no"
-    },
+	},
 
     "ITLB": {
         "sets": 16,
@@ -141,13 +141,13 @@
 	},
 
     "LLC": {
-        "frequency": 4000,
+        "frequency": 5000,
         "sets": 2048,
         "ways": 16,
         "rq_size": 32,
         "wq_size": 32,
         "pq_size": 32,
-        "mshr_size": 64,
+        "mshr_size": 32,
         "latency": 20,
         "max_tag_check": 1,
         "max_fill": 1,
@@ -159,6 +159,8 @@
     },
 
     "physical_memory": {
+    	"model": "ramulator",
+	"ramulator_config": "ramulator.yaml",
         "frequency": 3200,
         "channels": 1,
         "ranks": 1,
